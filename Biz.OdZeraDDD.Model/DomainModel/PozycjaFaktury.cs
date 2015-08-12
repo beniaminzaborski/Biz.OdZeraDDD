@@ -21,10 +21,10 @@ namespace Biz.OdZeraDDD.Model.DomainModel
 
     public virtual decimal StawkaVat { get; set; }
 
-    public decimal WartoscNetto { get; set; }
+    public virtual decimal WartoscNetto { get; set; }
 
-    public decimal WartoscVAT { get; set; }
+    public virtual decimal WartoscVAT { get; set; }
 
-    public decimal WartoscBrutto { get; set; }
+    public virtual decimal WartoscBrutto { get; set; }
   }
 }
