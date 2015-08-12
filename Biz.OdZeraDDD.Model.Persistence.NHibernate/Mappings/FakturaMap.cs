@@ -20,10 +20,6 @@ namespace Biz.OdZeraDDD.Model.Persistence.NHibernate.Mappings
       Map(e => e.DataWystawienia);
       Map(e => e.Numer);
 
-      Not.Map(e => e.WartoscBrutto);
-      Not.Map(e => e.WartoscNetto);
-      Not.Map(e => e.WartoscVAT);
-
       References(e => e.Kontrahent)
         .Class<Kontrahent>()
         .Column("IdKontrahenta");
