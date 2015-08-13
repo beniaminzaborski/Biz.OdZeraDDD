@@ -10,6 +10,7 @@ using Xunit;
 
 namespace Biz.OdZeraDDD.Tests.RepostitoryTests
 {
+  [Collection("Testy repozytoriów")]
   public class ProduktRepositoryTest : BaseRepositoryTest
   {
     public ProduktRepositoryTest(DatabaseFixture fixture) : base(fixture) { }
@@ -33,6 +34,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       produktRepository.Add(produkt);
 
       Session.Flush();
+      Session.Clear();
 
       // Assert
       Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
@@ -62,6 +64,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       var produktRepository = new ProduktRepository(Session);
       produktRepository.Add(produkt);
       Session.Flush();
+      Session.Clear();
 
       // Act
       Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
@@ -117,6 +120,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       produktRepository.Add(produkt1);
       produktRepository.Add(produkt2);
       Session.Flush();
+      Session.Clear();
 
       // Act
       IEnumerable<Produkt> savedProduktList = produktRepository.GetAll();
@@ -157,6 +161,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       var produktRepository = new ProduktRepository(Session);
       produktRepository.Add(produkt);
       Session.Flush();
+      Session.Clear();
 
       // Act
       produktRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));

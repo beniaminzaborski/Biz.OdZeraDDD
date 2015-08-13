@@ -80,6 +80,7 @@
     <Compile Include="HelloWorldTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostitoryTests\BaseRepositoryTest.cs" />
+    <Compile Include="RepostitoryTests\KontrahentRepositoryTest.cs" />
     <Compile Include="RepostitoryTests\ProduktRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
