@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.DaneAdresowe">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAIgAAAAAAAIAAAAAAIAAAAAAAQAAA=</HashCode>
+      <FileName>DomainModel\DaneAdresowe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.Faktura">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAAgAAAIAAAAABgQAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>DomainModel\Faktura.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Pozycje" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.Kontrahent">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAAAgAAAACAI=</HashCode>
+      <FileName>DomainModel\Kontrahent .cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Adres" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.PozycjaFaktury">
+    <Position X="8.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAADAEAAAAEACAAAAIAAQAQAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>DomainModel\PozycjaFaktury.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.PozycjaZamowienia">
+    <Position X="3.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAIAAAAQAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>DomainModel\PozycjaZamowienia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.Produkt">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAACAAAAAAAAAAAAAAAAAAAAAAgQAAACAA=</HashCode>
+      <FileName>DomainModel\Produkt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biz.OdZeraDDD.Model.DomainModel.Zamowienie">
+    <Position X="0.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAABAAQAAAAAAAAAAAAAAAAQBAAA=</HashCode>
+      <FileName>DomainModel\Zamowienie.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Pozycje" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
