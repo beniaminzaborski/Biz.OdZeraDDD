@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.OdZeraDDD.Model", "Biz.OdZeraDDD.Model\Biz.OdZeraDDD.Model.csproj", "{E56125DD-C5E7-40EC-BDFE-231338FB1DD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.OdZeraDDD.Model.Persistence.NHibernate", "Biz.OdZeraDDD.Model.Persistence.NHibernate\Biz.OdZeraDDD.Model.Persistence.NHibernate.csproj", "{B1A0026E-2E66-4D1D-BF81-6C3787CB3B16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.OdZeraDDD.Tests", "Biz.OdZeraDDD.Tests\Biz.OdZeraDDD.Tests.csproj", "{D0E7492C-CA98-4BBB-BDEB-6D9037F2020E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.OdZeraDDD.Model.Contract", "Biz.OdZeraDDD.Model.Contract\Biz.OdZeraDDD.Model.Contract.csproj", "{F961AEA3-B9EE-4D45-8549-26C99561A43A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D0E7492C-CA98-4BBB-BDEB-6D9037F2020E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E7492C-CA98-4BBB-BDEB-6D9037F2020E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E7492C-CA98-4BBB-BDEB-6D9037F2020E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F961AEA3-B9EE-4D45-8549-26C99561A43A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F961AEA3-B9EE-4D45-8549-26C99561A43A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F961AEA3-B9EE-4D45-8549-26C99561A43A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F961AEA3-B9EE-4D45-8549-26C99561A43A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

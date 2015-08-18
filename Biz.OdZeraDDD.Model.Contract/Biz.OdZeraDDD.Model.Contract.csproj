@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E56125DD-C5E7-40EC-BDFE-231338FB1DD7}</ProjectGuid>
+    <ProjectGuid>{F961AEA3-B9EE-4D45-8549-26C99561A43A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Biz.OdZeraDDD.Model</RootNamespace>
-    <AssemblyName>Biz.OdZeraDDD.Model</AssemblyName>
+    <RootNamespace>Biz.OdZeraDDD.Model.Contract</RootNamespace>
+    <AssemblyName>Biz.OdZeraDDD.Model.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,49 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainModel\DaneAdresowe.cs" />
-    <Compile Include="DomainModel\Faktura.cs" />
-    <Compile Include="DomainModel\Kontrahent .cs" />
-    <Compile Include="DomainModel\PozycjaFaktury.cs" />
-    <Compile Include="DomainModel\PozycjaZamowienia.cs" />
-    <Compile Include="DomainModel\Produkt.cs" />
-    <Compile Include="DomainModel\Zamowienie.cs" />
-    <Compile Include="Infrastructure\Entity.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="DTOs\ProduktDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IFakturaRepository.cs" />
-    <Compile Include="Repositories\IKontrahentRepository.cs" />
-    <Compile Include="Repositories\IProduktRepository.cs" />
-    <Compile Include="Repositories\IZamowienieRepository.cs" />
-    <Compile Include="Services\ProduktyService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DomainModel\ModelDiagram.cd" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Biz.OdZeraDDD.Model.Contract\Biz.OdZeraDDD.Model.Contract.csproj">
-      <Project>{f961aea3-b9ee-4d45-8549-26c99561a43a}</Project>
-      <Name>Biz.OdZeraDDD.Model.Contract</Name>
-    </ProjectReference>
+    <Compile Include="Services\IProduktyService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
