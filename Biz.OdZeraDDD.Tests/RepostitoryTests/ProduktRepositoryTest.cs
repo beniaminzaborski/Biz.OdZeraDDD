@@ -182,8 +182,8 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       produktRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
 
       // Assert
-      Produkt savedProdukt = Session.Get<Produkt>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
-      Assert.Null(savedProdukt);
+      Produkt deletedProdukt = Session.Get<Produkt>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      Assert.Null(deletedProdukt);
     }
 
     [Fact]

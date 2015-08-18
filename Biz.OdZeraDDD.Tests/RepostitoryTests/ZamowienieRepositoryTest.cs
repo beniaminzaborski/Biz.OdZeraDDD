@@ -1,5 +1,6 @@
 ﻿using Biz.OdZeraDDD.Model.DomainModel;
 using Biz.OdZeraDDD.Model.Persistence.NHibernate.Repositories;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -249,44 +250,58 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Assert.Equal(0.23m, savedPozycja2.StawkaVat);
     }
 
-    /*
+    
     [Fact]
-    public void Produkt_Get_NotExists()
+    public void Zamowienie_Get_NotExists()
     {
       // Arrange 
-      var produktRepository = new ProduktRepository(Session);
+      var zamowienieRepository = new ZamowienieRepository(Session);
 
       // Act
-      Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      Zamowienie savedZamowienie = zamowienieRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
 
       // Assert
-      Assert.Null(savedProdukt);
+      Assert.Null(savedZamowienie);
     }
 
     [Fact]
-    public void Produkt_GetAll_Exists()
+    public void Zamowienie_GetAll_Exists()
     {
       // Arrange 
+      var produkt1 = UtworzProdukt1();
+      var produkt2 = UtworzProdukt2();
+      var kontrahent = UtworzKontrahenta();
+
       using (var tx = Session.BeginTransaction())
       {
-        Session.Save(new Produkt
+        var pozycjeZamowienia = new List<PozycjaZamowienia>();
+        pozycjeZamowienia.Add(new PozycjaZamowienia
         {
-          Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
-          Nazwa = "Produkt 1",
-          StawkaVAT = 0.23m,
-          Symbol = "PR1",
-          CzyAktywny = true,
-          CenaNetto = 12.99m
+          Id = new Guid("A027A2D3-E78B-4920-A1B6-5C4F58A4D109"),
+          CenaNetto = 2.99m,
+          Ilosc = 2,
+          Lp = 0,
+          Produkt = produkt1,
+          StawkaVat = 0.23m
+        });
+        pozycjeZamowienia.Add(new PozycjaZamowienia
+        {
+          Id = new Guid("4C923725-107F-47B6-852D-2B1E5C7D9664"),
+          CenaNetto = 13.79m,
+          Ilosc = 1,
+          Lp = 1,
+          Produkt = produkt2,
+          StawkaVat = 0.23m
         });
 
-        Session.Save(new Produkt
+        Session.Save(new Zamowienie
         {
-          Id = new Guid("7bc79ed5-a97d-4d7e-8d36-a4e8f235b59f"),
-          Nazwa = "Produkt 2",
-          StawkaVAT = 0.08m,
-          Symbol = "PR2",
-          CzyAktywny = true,
-          CenaNetto = 22.79m
+          Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
+          CzyZafakturowane = false,
+          DataZlozenia = new DateTime(2015, 8, 18),
+          Numer = "ZM-001",
+          Kontrahent = kontrahent,
+          Pozycje = pozycjeZamowienia
         });
 
         tx.Commit();
@@ -295,44 +310,68 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Session.Flush();
       Session.Clear();
 
-      var produktRepository = new ProduktRepository(Session);
+      var zamowienieRepository = new ZamowienieRepository(Session);
 
       // Act
-      IEnumerable<Produkt> savedProduktList = produktRepository.GetAll();
+      IEnumerable<Zamowienie> savedZamowienieList = zamowienieRepository.GetAll();
 
       // Assert
-      Assert.NotNull(savedProduktList);
-      Assert.Equal(2, savedProduktList.Count());
+      Assert.NotNull(savedZamowienieList);
+      Assert.Equal(1, savedZamowienieList.Count());
     }
 
     [Fact]
-    public void Produkt_GetAll_EmptyList()
+    public void Zamowienie_GetAll_EmptyList()
     {
       // Arrange 
-      var produktRepository = new ProduktRepository(Session);
+      var zamowienieRepository = new ZamowienieRepository(Session);
 
       // Act
-      IEnumerable<Produkt> savedProduktList = produktRepository.GetAll();
+      IEnumerable<Zamowienie> savedZamowienieList = zamowienieRepository.GetAll();
 
       // Assert
-      Assert.NotNull(savedProduktList);
-      Assert.Equal(0, savedProduktList.Count());
+      Assert.NotNull(savedZamowienieList);
+      Assert.Equal(0, savedZamowienieList.Count());
     }
 
     [Fact]
-    public void Produkt_RemoveExistedById_Removed()
+    public void Zamowienie_RemoveExistedById_Removed()
     {
-      // Arrange 
+      // Arrange
+      var produkt1 = UtworzProdukt1();
+      var produkt2 = UtworzProdukt2();
+      var kontrahent = UtworzKontrahenta();
+
       using (var tx = Session.BeginTransaction())
       {
-        Session.Save(new Produkt
+        var pozycjeZamowienia = new List<PozycjaZamowienia>();
+        pozycjeZamowienia.Add(new PozycjaZamowienia
         {
-          Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
-          Nazwa = "Produkt 1",
-          StawkaVAT = 0.23m,
-          Symbol = "PR1",
-          CzyAktywny = true,
-          CenaNetto = 12.99m
+          Id = new Guid("A027A2D3-E78B-4920-A1B6-5C4F58A4D109"),
+          CenaNetto = 2.99m,
+          Ilosc = 2,
+          Lp = 0,
+          Produkt = produkt1,
+          StawkaVat = 0.23m
+        });
+        pozycjeZamowienia.Add(new PozycjaZamowienia
+        {
+          Id = new Guid("4C923725-107F-47B6-852D-2B1E5C7D9664"),
+          CenaNetto = 13.79m,
+          Ilosc = 1,
+          Lp = 1,
+          Produkt = produkt2,
+          StawkaVat = 0.23m
+        });
+
+        Session.Save(new Zamowienie
+        {
+          Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
+          CzyZafakturowane = false,
+          DataZlozenia = new DateTime(2015, 8, 18),
+          Numer = "ZM-001",
+          Kontrahent = kontrahent,
+          Pozycje = pozycjeZamowienia
         });
 
         tx.Commit();
@@ -341,25 +380,25 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Session.Flush();
       Session.Clear();
 
-      var produktRepository = new ProduktRepository(Session);
+      var zamowienieRepository = new ZamowienieRepository(Session);
 
       // Act
-      produktRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      zamowienieRepository.Delete(new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"));
 
       // Assert
-      Produkt savedProdukt = Session.Get<Produkt>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
-      Assert.Null(savedProdukt);
+      Zamowienie deletedZamowienie = Session.Get<Zamowienie>(new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"));
+      Assert.Null(deletedZamowienie);
     }
 
     [Fact]
-    public void Produkt_RemoveNonExistedById_Fail()
+    public void Zamowienie_RemoveNonExistedById_Fail()
     {
       // Arrange 
-      var produktRepository = new ProduktRepository(Session);
+      var zamowienieRepository = new ZamowienieRepository(Session);
 
       // Act
-      Assert.Throws<ObjectNotFoundException>(() => produktRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6")));
+      Assert.Throws<ObjectNotFoundException>(() => zamowienieRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6")));
     }
-    */
+    
   }
 }

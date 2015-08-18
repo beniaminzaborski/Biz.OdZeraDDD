@@ -239,8 +239,8 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       kontrahentRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
 
       // Assert
-      Kontrahent savedKontrahent = Session.Get<Kontrahent>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
-      Assert.Null(savedKontrahent);
+      Kontrahent deletedKontrahent = Session.Get<Kontrahent>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      Assert.Null(deletedKontrahent);
     }
 
     [Fact]
