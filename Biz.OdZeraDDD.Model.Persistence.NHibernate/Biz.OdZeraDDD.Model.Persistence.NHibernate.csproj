@@ -65,6 +65,7 @@
     <Compile Include="Repositories\ProduktRepository.cs" />
     <Compile Include="Repositories\ZamowienieRepository.cs" />
     <Compile Include="SessionFactoryProviders\InFileDatabaseSessionFactoryProvider.cs" />
+    <Compile Include="SessionFactoryProviders\InMemoryDatabaseSessionFactoryProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

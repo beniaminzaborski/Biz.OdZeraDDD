@@ -10,13 +10,14 @@ using Xunit;
 
 namespace Biz.OdZeraDDD.Tests.RepostitoryTests
 {
-  [Collection("Testy repozytoriów")]
-  public class ProduktRepositoryTest : BaseRepositoryTest
+  //[Collection("Testy repozytoriów")]
+  public class ProduktRepositoryTest : BaseInMemoryRepositoryTest //BaseRepositoryTest
   {
-    public ProduktRepositoryTest(DatabaseFixture fixture) : base(fixture) { }
+    //public ProduktRepositoryTest(DatabaseFixture fixture) : base(fixture) { }
+    public ProduktRepositoryTest() : base() { }
 
     [Fact]
-    public void Produkt_Add_New()
+    public void Produkt_AddNew_Created()
     {
       // Arrange
       Produkt produkt = new Produkt
@@ -37,7 +38,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Session.Clear();
 
       // Assert
-      Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      Produkt savedProdukt = Session.Get<Produkt>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
       Assert.NotNull(savedProdukt);
       Assert.Equal(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"), savedProdukt.Id);
       Assert.Equal("Produkt 1", savedProdukt.Nazwa);
@@ -51,20 +52,25 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
     public void Produkt_Get_Exists()
     {
       // Arrange 
-      Produkt produkt = new Produkt
+      using (var tx = Session.BeginTransaction())
       {
-        Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
-        Nazwa = "Produkt 1",
-        StawkaVAT = 0.23m,
-        Symbol = "PR1",
-        CzyAktywny = true,
-        CenaNetto = 12.99m
-      };
+        Session.Save(new Produkt
+        {
+          Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
+          Nazwa = "Produkt 1",
+          StawkaVAT = 0.23m,
+          Symbol = "PR1",
+          CzyAktywny = true,
+          CenaNetto = 12.99m
+        });
 
-      var produktRepository = new ProduktRepository(Session);
-      produktRepository.Add(produkt);
+        tx.Commit();
+      }
+
       Session.Flush();
       Session.Clear();
+
+      var produktRepository = new ProduktRepository(Session);
 
       // Act
       Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
@@ -96,31 +102,35 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
     public void Produkt_GetAll_Exists()
     {
       // Arrange 
-      var produktRepository = new ProduktRepository(Session);
-
-      Produkt produkt1 = new Produkt
+      using (var tx = Session.BeginTransaction())
       {
-        Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
-        Nazwa = "Produkt 1",
-        StawkaVAT = 0.23m,
-        Symbol = "PR1",
-        CzyAktywny = true,
-        CenaNetto = 12.99m
-      };
-      Produkt produkt2 = new Produkt
-      {
-        Id = new Guid("7bc79ed5-a97d-4d7e-8d36-a4e8f235b59f"),
-        Nazwa = "Produkt 2",
-        StawkaVAT = 0.08m,
-        Symbol = "PR2",
-        CzyAktywny = true,
-        CenaNetto = 22.79m
-      };
+        Session.Save(new Produkt
+        {
+          Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
+          Nazwa = "Produkt 1",
+          StawkaVAT = 0.23m,
+          Symbol = "PR1",
+          CzyAktywny = true,
+          CenaNetto = 12.99m
+        });
 
-      produktRepository.Add(produkt1);
-      produktRepository.Add(produkt2);
+        Session.Save(new Produkt
+        {
+          Id = new Guid("7bc79ed5-a97d-4d7e-8d36-a4e8f235b59f"),
+          Nazwa = "Produkt 2",
+          StawkaVAT = 0.08m,
+          Symbol = "PR2",
+          CzyAktywny = true,
+          CenaNetto = 22.79m
+        });
+
+        tx.Commit();
+      }
+
       Session.Flush();
       Session.Clear();
+
+      var produktRepository = new ProduktRepository(Session);
 
       // Act
       IEnumerable<Produkt> savedProduktList = produktRepository.GetAll();
@@ -131,7 +141,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
     }
 
     [Fact]
-    public void Produkt_GetAll_Empty()
+    public void Produkt_GetAll_EmptyList()
     {
       // Arrange 
       var produktRepository = new ProduktRepository(Session);
@@ -145,34 +155,39 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
     }
 
     [Fact]
-    public void Produkt_RemoveById_Exists()
+    public void Produkt_RemoveExistedById_Removed()
     {
       // Arrange 
-      Produkt produkt = new Produkt
+      using (var tx = Session.BeginTransaction())
       {
-        Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
-        Nazwa = "Produkt 1",
-        StawkaVAT = 0.23m,
-        Symbol = "PR1",
-        CzyAktywny = true,
-        CenaNetto = 12.99m
-      };
+        Session.Save(new Produkt
+        {
+          Id = new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"),
+          Nazwa = "Produkt 1",
+          StawkaVAT = 0.23m,
+          Symbol = "PR1",
+          CzyAktywny = true,
+          CenaNetto = 12.99m
+        });
 
-      var produktRepository = new ProduktRepository(Session);
-      produktRepository.Add(produkt);
+        tx.Commit();
+      }
+
       Session.Flush();
       Session.Clear();
+
+      var produktRepository = new ProduktRepository(Session);
 
       // Act
       produktRepository.Delete(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
 
       // Assert
-      Produkt savedProdukt = produktRepository.Get(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
+      Produkt savedProdukt = Session.Get<Produkt>(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"));
       Assert.Null(savedProdukt);
     }
 
     [Fact]
-    public void Produkt_RemoveById_NotExists()
+    public void Produkt_RemoveNonExistedById_Fail()
     {
       // Arrange 
       var produktRepository = new ProduktRepository(Session);

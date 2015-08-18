@@ -13,6 +13,7 @@ namespace Biz.OdZeraDDD.Model.Persistence.NHibernate.Mappings
     public ZamowienieMap()
     {
       Table("Zamowienia");
+      LazyLoad();
 
       Id(e => e.Id).GeneratedBy.Assigned();
 
