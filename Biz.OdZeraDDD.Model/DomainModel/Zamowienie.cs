@@ -1,4 +1,5 @@
-﻿using Biz.OdZeraDDD.Model.Infrastructure;
+﻿using Biz.OdZeraDDD.Model.Enums;
+using Biz.OdZeraDDD.Model.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,6 @@ namespace Biz.OdZeraDDD.Model.DomainModel
 
     public virtual IEnumerable<PozycjaZamowienia> Pozycje { get; set; }
 
-    public virtual bool CzyZafakturowane { get; set; }
+    public virtual StatusZamowienia Status { get; set; }
   }
 }

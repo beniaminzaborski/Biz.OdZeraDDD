@@ -17,7 +17,7 @@ namespace Biz.OdZeraDDD.Model.Persistence.NHibernate.Mappings
 
       Id(e => e.Id).GeneratedBy.Assigned();
 
-      Map(e => e.CzyZafakturowane);
+      Map(e => e.Status);
       Map(e => e.DataZlozenia);
       Map(e => e.Numer);
 

@@ -78,6 +78,8 @@
   <ItemGroup>
     <Compile Include="DatabaseFixture.cs" />
     <Compile Include="HelloWorldTest.cs" />
+    <Compile Include="IntegrationTests\ProduktyServiceTest.cs" />
+    <Compile Include="IntegrationTests\ZamowieniaServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostitoryTests\BaseInMemoryRepositoryTest.cs" />
     <Compile Include="RepostitoryTests\BaseRepositoryTest.cs" />
@@ -93,6 +95,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Biz.OdZeraDDD.Model.Contract\Biz.OdZeraDDD.Model.Contract.csproj">
+      <Project>{f961aea3-b9ee-4d45-8549-26c99561a43a}</Project>
+      <Name>Biz.OdZeraDDD.Model.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Biz.OdZeraDDD.Model.Persistence.NHibernate\Biz.OdZeraDDD.Model.Persistence.NHibernate.csproj">
       <Project>{b1a0026e-2e66-4d1d-bf81-6c3787cb3b16}</Project>
       <Name>Biz.OdZeraDDD.Model.Persistence.NHibernate</Name>

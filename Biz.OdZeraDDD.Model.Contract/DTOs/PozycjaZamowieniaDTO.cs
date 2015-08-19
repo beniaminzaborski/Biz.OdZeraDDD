@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace Biz.OdZeraDDD.Model.DTOs
 {
   [Serializable]
-  public class ProduktDTO : DataTransferObject
+  public class PozycjaZamowieniaDTO : DataTransferObject
   {
-    public string Nazwa { get; set; }
+    public int Lp { get; set; }
 
-    public string Symbol { get; set; }
+    public Guid IdProduktu { get; set; }
 
-    public bool CzyAktywny { get; set; }
+    public int Ilosc { get; set; }
 
     public decimal CenaNetto { get; set; }
 
-    public decimal StawkaVAT { get; set; }
+    public decimal StawkaVat { get; set; }
   }
 }

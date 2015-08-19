@@ -1,4 +1,5 @@
 ﻿using Biz.OdZeraDDD.Model.DomainModel;
+using Biz.OdZeraDDD.Model.Enums;
 using Biz.OdZeraDDD.Model.Persistence.NHibernate.Repositories;
 using NHibernate;
 using System;
@@ -124,7 +125,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Zamowienie zamowienie = new Zamowienie
       {
         Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
-        CzyZafakturowane = false,
+        Status = StatusZamowienia.Nowe,
         DataZlozenia = new DateTime(2015, 8, 18),
         Numer = "ZM-001",
         Kontrahent = kontrahent,
@@ -143,7 +144,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       Zamowienie savedZamowienie = Session.Get<Zamowienie>(new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"));
       Assert.NotNull(savedZamowienie);
       Assert.Equal(new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"), savedZamowienie.Id);
-      Assert.Equal(false, savedZamowienie.CzyZafakturowane);
+      Assert.Equal(StatusZamowienia.Nowe, savedZamowienie.Status);
       Assert.Equal(new DateTime(2015, 8, 18), savedZamowienie.DataZlozenia);
       Assert.Equal(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"), savedZamowienie.Kontrahent.Id);
       Assert.Equal("ZM-001", savedZamowienie.Numer);
@@ -203,7 +204,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
         Session.Save(new Zamowienie
         {
           Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
-          CzyZafakturowane = false,
+          Status = StatusZamowienia.Nowe,
           DataZlozenia = new DateTime(2015, 8, 18),
           Numer = "ZM-001",
           Kontrahent = kontrahent,
@@ -224,7 +225,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
       // Assert
       Assert.NotNull(savedZamowienie);
       Assert.Equal(new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"), savedZamowienie.Id);
-      Assert.Equal(false, savedZamowienie.CzyZafakturowane);
+      Assert.Equal(StatusZamowienia.Nowe, savedZamowienie.Status);
       Assert.Equal(new DateTime(2015, 8, 18), savedZamowienie.DataZlozenia);
       Assert.Equal(new Guid("be7bdc8f-c8fa-473a-975e-848d7600aae6"), savedZamowienie.Kontrahent.Id);
       Assert.Equal("ZM-001", savedZamowienie.Numer);
@@ -297,7 +298,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
         Session.Save(new Zamowienie
         {
           Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
-          CzyZafakturowane = false,
+          Status = StatusZamowienia.Nowe,
           DataZlozenia = new DateTime(2015, 8, 18),
           Numer = "ZM-001",
           Kontrahent = kontrahent,
@@ -367,7 +368,7 @@ namespace Biz.OdZeraDDD.Tests.RepostitoryTests
         Session.Save(new Zamowienie
         {
           Id = new Guid("66748112-6445-4CFF-8EDB-43B785A53B43"),
-          CzyZafakturowane = false,
+          Status = StatusZamowienia.Nowe,
           DataZlozenia = new DateTime(2015, 8, 18),
           Numer = "ZM-001",
           Kontrahent = kontrahent,

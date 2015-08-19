@@ -72,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Biz.OdZeraDDD.Model.Contract\Biz.OdZeraDDD.Model.Contract.csproj">
+      <Project>{f961aea3-b9ee-4d45-8549-26c99561a43a}</Project>
+      <Name>Biz.OdZeraDDD.Model.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Biz.OdZeraDDD.Model\Biz.OdZeraDDD.Model.csproj">
       <Project>{e56125dd-c5e7-40ec-bdfe-231338fb1dd7}</Project>
       <Name>Biz.OdZeraDDD.Model</Name>
